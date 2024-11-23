@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Francisco Lopez">
+    <title>Diagrama de Despliegue ERC721</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fc;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .diagram-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 90vw;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .block {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        .block:hover {
+            animation: pulse 1s infinite ease-in-out;
+        }
+        #block1 { animation-delay: 0.2s; }
+        #block2 { animation-delay: 0.4s; }
+        #block3 { animation-delay: 0.6s; }
+        #block4 { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <h1>Despliegue de Contrato Inteligente ERC721 en la Blockchain</h1>
+    <div class="diagram-container">
+        <svg width="800" height="600" viewBox="0 0 800 600">
+            <!-- Títulos -->
+            <text x="200" y="40" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Código del Contrato ERC721</text>
+            <text x="620" y="40" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Despliegue en Blockchain</text>
+
+            <!-- Código del Contrato - Fondo oscuro -->
+            <rect x="50" y="60" width="300" height="420" fill="#282a36" rx="10"/>
+            <text x="70" y="90" font-family="monospace" font-size="12" fill="#8be9fd">
+                <tspan x="70" dy="0">// SPDX-License-Identifier: MIT</tspan>
+                <tspan x="70" dy="20" fill="#bd93f9">pragma</tspan>
+                <tspan fill="#f8f8f2"> solidity ^0.8.0;</tspan>
+                <tspan x="70" dy="20" fill="#bd93f9">import</tspan>
+                <tspan fill="#f8f8f2"> "@openzeppelin/contracts/token/</tspan>
+                <tspan x="70" dy="20" fill="#f8f8f2">ERC721/ERC721.sol";</tspan>
+                <tspan x="70" dy="20" fill="#bd93f9">import</tspan>
+                <tspan fill="#f8f8f2"> "@openzeppelin/contracts/</tspan>
+                <tspan x="70" dy="20" fill="#f8f8f2">access/Ownable.sol";</tspan>
+                <tspan x="70" dy="30" fill="#bd93f9">contract</tspan>
+                <tspan fill="#f8f8f2"> MyNFT is ERC721, Ownable {</tspan>
+                <tspan x="90" dy="20" fill="#bd93f9">    constructor</tspan>
+                <tspan fill="#f8f8f2">() ERC721("MyNFT", "MNFT")</tspan>
+                <tspan x="90" dy="20" fill="#f8f8f2">    Ownable(msg.sender) {}</tspan>
+                <tspan x="90" dy="30" fill="#bd93f9">    function</tspan>
+                <tspan fill="#50fa7b"> safeMint</tspan>
+                <tspan fill="#f8f8f2">(address to, uint256</tspan>
+                <tspan x="90" dy="20" fill="#f8f8f2">    tokenId) public onlyOwner {</tspan>
+                <tspan x="110" dy="20" fill="#f8f8f2">        _safeMint(to, tokenId);</tspan>
+                <tspan x="90" dy="20" fill="#f8f8f2">    }</tspan>
+                <tspan x="70" dy="20" fill="#f8f8f2">}</tspan>
+            </text>
+
+            <!-- Flecha -->
+            <path d="M 370 250 L 470 250" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                    markerWidth="6" markerHeight="6"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+                </marker>
+            </defs>
+
+            <!-- Blockchain Blocks -->
+            <g transform="translate(490, 60)">
+                <!-- Block #1 -->
+                <g id="block1" class="block">
+                    <rect x="0" y="0" width="260" height="80" fill="white" stroke="#e6e6e6" rx="4"/>
+                    <text x="20" y="30" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Block #1</text>
+                    <text x="20" y="50" font-family="monospace" font-size="12" fill="#666">Contract Creation</text>
+                </g>
+
+                <!-- Block #2 -->
+                <g id="block2" class="block">
+                    <rect x="0" y="100" width="260" height="80" fill="white" stroke="#e6e6e6" rx="4"/>
+                    <text x="20" y="130" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Block #2</text>
+                    <text x="20" y="150" font-family="monospace" font-size="12" fill="#666">Token Metadata</text>
+                </g>
+
+                <!-- Block #3 -->
+                <g id="block3" class="block">
+                    <rect x="0" y="200" width="260" height="80" fill="white" stroke="#e6e6e6" rx="4"/>
+                    <text x="20" y="230" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Block #3</text>
+                    <text x="20" y="250" font-family="monospace" font-size="12" fill="#666">Mint Transaction</text>
+                </g>
+
+                <!-- Block #4 -->
+                <g id="block4" class="block">
+                    <rect x="0" y="300" width="260" height="80" fill="white" stroke="#e6e6e6" rx="4"/>
+                    <text x="20" y="330" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Block #4</text>
+                    <text x="20" y="350" font-family="monospace" font-size="12" fill="#666">Transfer Event</text>
+                </g>
+            </g>
+        </svg>
+    </div>
+</body>
+</html>
